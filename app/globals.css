@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
+/* ─── Tailwind v4 custom theme ──────────────────────────────── */
+@theme {
+  --color-deep-teal: #0b3d4e;
+  --color-deep-teal-dark: #072b38;
+  --color-gold: #c9a84c;
+  --color-pearl: #f5f0ff;
+  --color-rose-pink: #ff6b9d;
+  --color-parchment: #fef9e7;
+
+  --font-dancing: var(--font-dancing), "Dancing Script", cursive;
+  --font-poppins: var(--font-poppins), "Poppins", sans-serif;
+}
+
+/* ─── CSS variables ─────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --deep-teal: #0b3d4e;
+  --gold: #c9a84c;
+  --pearl: #f5f0ff;
+  --rose: #ff6b9d;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Global resets ─────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  background-color: #0b3d4e;
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Shimmer keyframe (used by divider) ────────────────────── */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ─── Pulse skeleton ────────────────────────────────────────── */
+@keyframes pulse-bg {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.skeleton-pulse {
+  animation: pulse-bg 1.6s ease-in-out infinite;
 }
