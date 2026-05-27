@@ -9,7 +9,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import styled from "@emotion/styled";
-import Image from "next/image";
+import { imgPath } from "@/lib/utils";
 
 /* ─── Emotion styled components ────────────────────────────────── */
 
@@ -251,12 +251,11 @@ export default function EnvelopeSection() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ type: "spring", stiffness: 120, damping: 18 }}
         >
-          {/* Envelope image */}
-          <Image
-            src="/images/Invitacion Carta.png"
+          {/* Envelope image — plain <img> so imgPath owns the full URL */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={imgPath("/images/Invitacion%20Carta.png")}
             alt="Carta de invitación"
-            width={240}
-            height={170}
             style={{
               width: "100%",
               height: "auto",
@@ -264,7 +263,6 @@ export default function EnvelopeSection() {
               borderRadius: "8px",
               filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.35))",
             }}
-            priority
           />
 
           {/* Flap overlay — top 50 % of the envelope image */}

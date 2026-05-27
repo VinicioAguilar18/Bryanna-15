@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
+import { imgPath } from "@/lib/utils";
 
 /* ─── Precomputed bubble data (avoids Math.random hydration mismatch) ── */
 const BUBBLES = [
@@ -57,13 +57,20 @@ export default function HeroSection() {
           y: bgY,
         }}
       >
-        <Image
-          src="/images/Sirenita Fondo.png"
+        {/* Plain <img> so imgPath controls the full URL — avoids next/image
+            double-prefixing basePath in static export mode */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={imgPath("/images/Sirenita%20Fondo.png")}
           alt="Fondo acuático bajo el mar"
-          fill
-          sizes="430px"
-          style={{ objectFit: "cover", objectPosition: "center" }}
-          priority
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
         />
       </motion.div>
 
