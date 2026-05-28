@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { imgPath } from "@/lib/utils";
+import { AnimatedLetterText } from "@/components/ui/portfolio-text";
 
 /* ─── Precomputed bubble data (avoids Math.random hydration mismatch) ── */
 const BUBBLES = [
@@ -26,7 +27,11 @@ const BUBBLES = [
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  /* ── Soft parallax on the background image ─────────────────────── */
+  /* ── Raw window scroll → video parallax (moves slower = depth) ── */
+  const { scrollY } = useScroll();
+  const videoY = useTransform(scrollY, [0, 500], [0, 150]);
+
+  /* ── Section-based scroll → static image parallax ────────────── */
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -48,17 +53,27 @@ export default function HeroSection() {
         justifyContent: "center",
       }}
     >
-      {/* ── Background image with parallax ──────────────────────── */}
+      {/* ── Video background — slowest layer (depth effect) ─────── */}
+      <motion.video
+        style={{ y: videoY }}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        src={imgPath("/images/Sobre.mp4")}
+        aria-hidden
+      />
+
+      {/* ── Static image — in front of video ────────────────────── */}
       <motion.div
         style={{
           position: "absolute",
-          inset: "-10% 0",   /* extra height so parallax never shows gaps */
-          zIndex: 0,
+          inset: "-10% 0",
+          zIndex: 1,
           y: bgY,
         }}
       >
-        {/* Plain <img> so imgPath controls the full URL — avoids next/image
-            double-prefixing basePath in static export mode */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={imgPath("/images/Sirenita%20Fondo.png")}
@@ -79,7 +94,7 @@ export default function HeroSection() {
         style={{
           position: "absolute",
           inset: 0,
-          zIndex: 1,
+          zIndex: 2,
           background:
             "linear-gradient(to bottom, rgba(0,0,0,0.28) 0%, rgba(11,61,78,0.65) 100%)",
           pointerEvents: "none",
@@ -99,7 +114,7 @@ export default function HeroSection() {
             borderRadius: "50%",
             backgroundColor: "rgba(255,255,255,0.22)",
             border: "1px solid rgba(255,255,255,0.55)",
-            zIndex: 2,
+            zIndex: 3,
             backdropFilter: "blur(1px)",
           }}
           animate={{ y: ["0px", "-105vh"], opacity: [0.7, 0] }}
@@ -127,59 +142,23 @@ export default function HeroSection() {
         <h1
           style={{
             fontFamily: "var(--font-dancing), 'Dancing Script', cursive",
-            fontSize: "clamp(2.5rem, 8vw, 3.5rem)",
+            fontSize: "clamp(3.5rem, 11vw, 5rem)",
             fontWeight: 700,
-            lineHeight: 1.25,
+            lineHeight: 1.2,
             letterSpacing: "-0.01em",
-            /* 3D pink rainbow text */
-            background:
-              "linear-gradient(90deg, #ff6b9d, #ff9ff3, #ffd6e0, #ffb3c6, #ff6b9d)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            /* drop-shadow simulates the text-shadow 3D spec */
             filter:
               "drop-shadow(3px 3px 0px #c94b7b) drop-shadow(6px 6px 0px rgba(201,75,123,0.28))",
           }}
         >
-          15 años
+          <AnimatedLetterText letterToReplace="a">
+            15 años
+          </AnimatedLetterText>
           <br />
-          Bryanna Aguilar
+          <AnimatedLetterText letterToReplace="a">
+            Bryanna Aguilar
+          </AnimatedLetterText>
         </h1>
       </motion.div>
-
-      {/* ── Subtitle ─────────────────────────────────────────────── */}
-      <motion.p
-        style={{
-          zIndex: 10,
-          marginTop: "18px",
-          padding: "0 24px",
-          textAlign: "center",
-          fontFamily: "var(--font-dancing), 'Dancing Script', cursive",
-          fontSize: "clamp(1.2rem, 4vw, 1.6rem)",
-          fontStyle: "italic",
-          lineHeight: 1.4,
-          position: "relative",
-        }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.55 }}
-      >
-        {/* Keep emojis outside the gradient span so they remain visible */}
-        <span style={{ color: "#ff9ff3" }}>✨</span>
-        <span
-          style={{
-            background:
-              "linear-gradient(90deg, #ff6b9d, #c084fc, #60a5fa, #34d399, #fbbf24)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          {" "}Te invito a mis 15 años{" "}
-        </span>
-        <span style={{ color: "#ff9ff3" }}>✨</span>
-      </motion.p>
 
       {/* ── Scroll indicator (two bouncing chevrons) ─────────────── */}
       <motion.div
@@ -190,7 +169,6 @@ export default function HeroSection() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "0px",
         }}
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
@@ -202,16 +180,9 @@ export default function HeroSection() {
   );
 }
 
-/* ── Small inline SVG chevron ───────────────────────────────────── */
 function ChevronDown({ opacity }: { opacity: number }) {
   return (
-    <svg
-      width="28"
-      height="18"
-      viewBox="0 0 28 18"
-      fill="none"
-      style={{ display: "block" }}
-    >
+    <svg width="28" height="18" viewBox="0 0 28 18" fill="none" style={{ display: "block" }}>
       <path
         d="M4 4l10 10 10-10"
         stroke={`rgba(255,255,255,${opacity})`}
