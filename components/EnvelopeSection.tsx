@@ -180,13 +180,21 @@ export default function EnvelopeSection() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ type: "spring", stiffness: 120, damping: 18 }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={imgPath("/images/Invitacion%20Carta.png")}
-            alt="Carta de invitación"
-            style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px",
-              filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.35))" }}
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              width: "100%",
+              maxWidth: "320px",
+              borderRadius: "16px",
+              display: "block",
+              margin: "0 auto",
+            }}
+          >
+            <source src={imgPath("/images/Sobre.mp4")} type="video/mp4" />
+          </video>
 
           {/* Flap overlay */}
           <motion.div
