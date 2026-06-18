@@ -1,9 +1,9 @@
 1:"$Sreact.fragment"
-2:I[1938,["522","static/chunks/522-62667c899aa1d2d0.js","974","static/chunks/app/page-848b20724e00c9ff.js"],"default"]
-3:I[5910,["522","static/chunks/522-62667c899aa1d2d0.js","974","static/chunks/app/page-848b20724e00c9ff.js"],"default"]
-4:I[5759,["522","static/chunks/522-62667c899aa1d2d0.js","974","static/chunks/app/page-848b20724e00c9ff.js"],"default"]
-5:I[7517,["522","static/chunks/522-62667c899aa1d2d0.js","974","static/chunks/app/page-848b20724e00c9ff.js"],"default"]
+2:I[1938,["522","static/chunks/522-62667c899aa1d2d0.js","974","static/chunks/app/page-ffaf05c59bdbf39d.js"],"default"]
+3:I[5910,["522","static/chunks/522-62667c899aa1d2d0.js","974","static/chunks/app/page-ffaf05c59bdbf39d.js"],"default"]
+4:I[5759,["522","static/chunks/522-62667c899aa1d2d0.js","974","static/chunks/app/page-ffaf05c59bdbf39d.js"],"default"]
+5:I[7517,["522","static/chunks/522-62667c899aa1d2d0.js","974","static/chunks/app/page-ffaf05c59bdbf39d.js"],"default"]
 6:I[484,[],"OutletBoundary"]
 7:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"style":{"maxWidth":"430px","margin":"0 auto","backgroundColor":"#0B3D4E","minHeight":"100dvh","overflowX":"hidden","position":"relative"},"children":[["$","$L2",null,{}],["$","$L3",null,{}],["$","$L4",null,{}],["$","$L5",null,{}],["$","footer",null,{"style":{"textAlign":"center","padding":"24px 16px","fontFamily":"var(--font-poppins), sans-serif","fontSize":"0.8rem","color":"rgba(255,255,255,0.45)","letterSpacing":"0.05em"},"children":"💙 Bryanna Aguilar · 2025 💙"}]]}],null,["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"BqHnJdIr6Mot6Jcp_7odW"}
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"style":{"maxWidth":"430px","margin":"0 auto","backgroundColor":"#0B3D4E","minHeight":"100dvh","overflowX":"hidden","position":"relative"},"children":[["$","$L2",null,{}],["$","$L3",null,{}],["$","$L4",null,{}],["$","$L5",null,{}],["$","footer",null,{"style":{"textAlign":"center","padding":"24px 16px","fontFamily":"var(--font-poppins), sans-serif","fontSize":"0.8rem","color":"rgba(255,255,255,0.45)","letterSpacing":"0.05em"},"children":"💙 Bryanna Aguilar · 2025 💙"}]]}],null,["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"KaCLpNg5J_DPCKrWEVjQ-"}
 8:null
