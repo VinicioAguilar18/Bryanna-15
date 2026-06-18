@@ -81,7 +81,7 @@ export default function RSVPSection() {
             lineHeight: 1.6,
           }}
         >
-          Te agradezco que confirmes antes del 15 de Junio
+          
         </motion.p>
 
         {/* LiquidButton — WhatsApp CTA */}
